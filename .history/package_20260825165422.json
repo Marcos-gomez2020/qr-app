@@ -1,0 +1,17 @@
+
+{
+  "name": "qr-generator",
+  "version": "1.0.0",
+  "description": "Generador de códigos QR con Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "qrcode": "^1.5.1"
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div style="text-align: center;">
+            <img src="images/Logo_1.png" alt="" style="width: 120px">
+        </div>
+       
+        <h1>QR Code Generator</h1>
+        <hr>
+        <div style="height: 20px;"></div>
+        <form id="utm-form">
+            <div class="form-group">
+                <label for="base-url">Ingresa el text o la url*</label>
+                <input type="text" id="text" placeholder="https://">
+            </div>
+          <div class="form-group">
+                <label for="tamaño">Tamaño</label>
+                <input type="number" name="size" id="size" placeholder="Tamaño (px)" min="100" max="1000" step="50" value="300">
+            </div>
+            <div class="form-group">
+                <label for="utm-source">Formato</label>
+                <select id="format" style="width: 100%;padding: 7px;border-color: #ccc;font-size: 15px;border-radius: 4px;">
+                    <option value="" disable selected>Selecciona el formato</option>
+                    <option value="png">png</option>
+                    <option value="jpg">jpg</option>
+                    <option value="svg">svg</option>
+                </select>
+            </div>
+            <button type="button" id="generate">Generar QR</button>
+        </form>
+
+        <div id="qrcode-div" style="text-align: center;">
+            <div class="qrcode" style="max-width: 200px;">
+                <img class="" id="qrcode" src="" alt="" style="padding-top: 20px;padding-bottom: 20px; width: auto;">
+            </div>
+            <button class="btn-descargar" id="download" type="button" style="display: none;">Descargar <i class="fa-solid fa-download" style="padding-left: 5px;"></i></button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

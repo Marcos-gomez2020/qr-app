@@ -1,0 +1,7 @@
+comando para ejecutar:  node ./index.js
+
+
+
+cd C:\laragon\www\qr-app
+npm install
+npm start

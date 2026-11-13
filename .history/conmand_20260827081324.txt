@@ -1,0 +1,7 @@
+comando para ejecutar:  node ./index.js
+
+
+
+cd C:\laragon\www\qr-generator-web
+npm install
+npm start

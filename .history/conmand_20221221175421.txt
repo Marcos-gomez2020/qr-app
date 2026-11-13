@@ -1,0 +1,1 @@
+comando para ejecutar:  node ./index.js

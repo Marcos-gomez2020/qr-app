@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Generador de códigos QR</title>
+        <link rel="icon" type="image/png" href="/images/favico-codigo-qr-blanco.png"/>
+        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="https://cloudflare.com"/>
+    </head>
+    <body>
+        <h1>Generador de códigos QR</h1>
+        <!-- <hr>-->
+          <div id="message" class="message"></div>
+        <div class="container">
+            <!-- <div style="text-align: center;"> <img src="images/Logo_1.png" alt="" style="width: 120px"> </div>-->
+            <div class="column_1">
+                <h2 class="pasos"><span>1</span> Ingresar la información</h2>
+                <div class="" style="height: 20px"></div>
+                <form id="utm-form">
+                    <div class="form-group">
+                        <label for="base-url">Ingresa la url *</label> <input type="url" id="text" placeholder="https://www.ejemplo.com" autocomplete="url" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Tamaño</label> <input type="number" name="size" id="size" placeholder="Tamaño (px)" min="100" max="1000" step="50" value="400" required/> 
+                        <small id="sizeInfo">400 × 400 px</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="utm-source">Formato</label> <select id="format">
+                        <option value="" disabled selected>Selecciona el formato</option>
+                        <option value="png">PNG</option>
+                        <option value="jpg">JPG</option>
+                        <option value="svg">SVG</option>
+                        </select>
+                    </div>
+                    <button type="button" id="generate">Generar QR</button>
+                </form>
+            </div>
+            <div class="column_2">
+                <h2 class="pasos"><span>2</span> Descargar el código QR</h2>
+                <div class="" style="height: 20px"></div>
+                <div id="qrcode-div" style="text-align: center">
+                    <div class="qrcode" style="display: flex; justify-content: center; align-items: center; margin: auto">
+                        <img class="" id="qrcode" src="" alt="" style="width: 280px; border-radius: 10px"/>
+                    </div>
+                    <button class="btn-descargar" id="download" type="button">Descargar QR</button>
+                   
+                </div>
+            </div>
+        </div>
+        <script src="app.js">
+        </script>
+    </body>
+</html>
