@@ -3,25 +3,23 @@ const path = require('path');
 const QRCode = require('qrcode');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Permitir recibir JSON
-app.use(express.json());
+// Recibir JSON enviado desde el navegador.
+app.use(express.json({ limit: '1mb' }));
 
-// Servir archivos del frontend
-app.use(express.static(__dirname));
+// En desarrollo local, Express sirve los archivos de public.
+// En Vercel, los archivos de public/ se sirven directamente desde su CDN.
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**
- * Generar código QR
+ * Generar código QR.
  */
 app.post('/api/generate-qr', async (req, res) => {
     try {
-        const { text, size, format } = req.body;
+        const { text, size, format } = req.body || {};
 
-        // -----------------------------
-        // VALIDAR URL
-        // -----------------------------
-        if (!text || text.trim() === '') {
+        if (!text || typeof text !== 'string' || text.trim() === '') {
             return res.status(400).json({
                 success: false,
                 message: 'Debes ingresar una URL.'
@@ -29,14 +27,11 @@ app.post('/api/generate-qr', async (req, res) => {
         }
 
         let url;
-
         try {
             url = new URL(text.trim());
-
             if (!['http:', 'https:'].includes(url.protocol)) {
-                throw new Error();
+                throw new Error('Protocolo no permitido');
             }
-
         } catch {
             return res.status(400).json({
                 success: false,
@@ -44,11 +39,7 @@ app.post('/api/generate-qr', async (req, res) => {
             });
         }
 
-        // -----------------------------
-        // VALIDAR TAMAÑO
-        // -----------------------------
         const qrSize = Number(size);
-
         if (!Number.isInteger(qrSize) || qrSize < 100 || qrSize > 1000) {
             return res.status(400).json({
                 success: false,
@@ -56,11 +47,7 @@ app.post('/api/generate-qr', async (req, res) => {
             });
         }
 
-        // -----------------------------
-        // VALIDAR FORMATO
-        // -----------------------------
         const allowedFormats = ['png', 'jpg', 'svg'];
-
         if (!allowedFormats.includes(format)) {
             return res.status(400).json({
                 success: false,
@@ -68,13 +55,10 @@ app.post('/api/generate-qr', async (req, res) => {
             });
         }
 
-        // -----------------------------
-        // CONFIGURACIÓN QR
-        // -----------------------------
         const options = {
             width: qrSize,
             margin: 2,
-            errorCorrectionLevel: 'M',
+            errorCorrectionLevel: 'H',
             color: {
                 dark: '#000000',
                 light: '#00000000'
@@ -83,11 +67,7 @@ app.post('/api/generate-qr', async (req, res) => {
 
         let dataUrl;
 
-        // -----------------------------
-        // SVG
-        // -----------------------------
         if (format === 'svg') {
-
             const svg = await QRCode.toString(url.toString(), {
                 ...options,
                 type: 'svg'
@@ -96,60 +76,43 @@ app.post('/api/generate-qr', async (req, res) => {
             dataUrl = `data:image/svg+xml;base64,${Buffer
                 .from(svg)
                 .toString('base64')}`;
+        } else {
+            dataUrl = await QRCode.toDataURL(url.toString(), {
+                ...options,
+                type: 'image/png'
+            });
         }
 
-        // -----------------------------
-        // PNG
-        // -----------------------------
-        else {
-
-            dataUrl = await QRCode.toDataURL(
-                url.toString(),
-                {
-                    ...options,
-                    type: 'image/png'
-                }
-            );
-        }
-
-        // -----------------------------
-        // RESPUESTA
-        // -----------------------------
-        res.json({
+        return res.json({
             success: true,
             dataUrl,
             format,
             size: qrSize,
             text: url.toString()
         });
-
     } catch (error) {
-
         console.error('Error generando QR:', error);
-
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: 'Ocurrió un error al generar el código QR.'
         });
     }
 });
 
-/**
- * Página principal
- */
+// La página está dentro de public/, no en la raíz del proyecto.
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-/**
- * Iniciar servidor
- */
-app.listen(PORT, () => {
+// Vercel importa/exporta la aplicación; localmente iniciamos el servidor.
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log('=================================');
+        console.log('       QR GENERATOR');
+        console.log('=================================');
+        console.log(`Servidor: http://localhost:${PORT}`);
+        console.log('=================================');
+    });
+}
 
-    console.log('=================================');
-    console.log('       QR GENERATOR');
-    console.log('=================================');
-    console.log(`Servidor: http://localhost:${PORT}`);
-    console.log('=================================');
-
-});
+module.exports = app;
