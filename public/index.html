@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/style.css"/>
     </head>
     <body>
-        <h1><span style="color: #ffffff4d;">Generador</span> <span>de códigos QR</span></h1>
+        <h1><span style="color: #ffffff4d;">Generador</span> de códigos QR</h1>
         <!-- <hr>-->
           <!--<div id="message" class="message"></div>-->
        
@@ -75,7 +75,14 @@
                 </div>
             </div>
         </div>
-        <script src="/app.js">
-        </script>
+        <footer id="qr-live-clock" class="live-clock" aria-label="Fecha y hora actual de Colombia">
+            <span class="live-clock-icon" aria-hidden="true">◷</span>
+            <span class="live-clock-content">
+                <time id="live-time" class="live-clock-time">--:--:-- p. m.</time>
+                <time id="live-date" class="live-clock-date">Cargando fecha...</time>
+            </span>
+        </footer>
+
+        <script src="/app.js"></script>
     </body>
 </html>

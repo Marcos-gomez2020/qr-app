@@ -538,6 +538,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
+    // RELOJ Y FECHA EN TIEMPO REAL (COLOMBIA)
+    // ==========================================
+
+    const liveTime = document.querySelector('#live-time');
+    const liveDate = document.querySelector('#live-date');
+
+    function updateLiveClock() {
+        const now = new Date();
+
+        if (liveTime) {
+            liveTime.textContent = new Intl.DateTimeFormat('es-CO', {
+                timeZone: 'America/Bogota',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            }).format(now);
+        }
+
+        if (liveDate) {
+            liveDate.textContent = new Intl.DateTimeFormat('es-CO', {
+                timeZone: 'America/Bogota',
+                weekday: 'long',
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            }).format(now);
+        }
+    }
+
+    updateLiveClock();
+    setInterval(updateLiveClock, 1000);
+
+
+    // ==========================================
     // DESCARGAR ARCHIVO
     // ==========================================
 
