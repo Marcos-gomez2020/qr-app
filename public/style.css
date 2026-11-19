@@ -169,13 +169,13 @@ button {
     border-style: none;
     /*border-width: 2px;*/
     font-weight: bold;
-    background-color: #FF0000;
+    background-color:  #c50303;
     margin-top: 35px;
 }
 
 button:hover {
-    background-color: #c50303;
-   
+    background-color:#FF0000 ;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     color: #FFFFFF;
     
 }
