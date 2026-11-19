@@ -190,11 +190,12 @@ button:hover {
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
-    background-color: #399930;
+    background-color:  #337a1d;
     margin-top: 40px;
 }
 .btn-descargar:hover{
-    background-color: #337a1d ;
+    background-color:  #399930;
+    box-shadow: 0 0 10px rgba(57, 153, 48, 0.5);
 }
 .qrcode{
     margin-top: 35px;
