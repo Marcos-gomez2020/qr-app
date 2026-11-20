@@ -1,7 +1,17 @@
+:root {
+   --bg-color-body:#031316;
+    --border-color-card:#1f2c40;
+    --bg-color-card:rgba(255, 255, 255, 0.05);
+    --bg-color-input:#0b2e33;
+    --border-color-input:#195058;
+    --color-input:#ccc;
+    --text-principal-1:#297580;
+    --text-principal-2:#e6f3f5;
+}
 body {
     font-family:Arial, Helvetica, sans-serif;
-    background-color: #161b1e;
-    color: #333;
+    background-color: var(--bg-color-body);
+    color: var(--text-principal-2);
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,8 +25,8 @@ body {
 
 header {
     width: 100%;
-    background-color: #4099FF;
-    color: white;
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
     padding: 5px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -65,7 +75,7 @@ hr{
   flex: 1;
   height: 450px;
   flex-basis: 400px;
-  border: 1px solid #1f2c40;
+  border: 1px solid var(--border-color-card);
   gap: 20px;
   padding: 40px;
     max-width: 600px;
@@ -73,14 +83,14 @@ hr{
     margin: 20px 20px;
     border-radius: 15px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, .35);
-   background-color: rgba(255, 255, 255, 0.04);
+   background-color: var(--bg-color-card);
    overflow-y:hidden;
 }
 .column_2{
   flex: 1;
   height: 450px;
   flex-basis: 400px;
-  border: 1px solid #1f2c40;
+  border: 1px solid var(--border-color-card);
   gap: 20px;
   padding: 40px;
    max-width: 400px;
@@ -88,7 +98,7 @@ hr{
     margin: 20px 20px;
     border-radius: 15px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, .35);
-    background-color: rgba(255, 255, 255, 0.04);
+    background-color: var(--bg-color-card);
     overflow-y:hidden;
     
 }
@@ -131,9 +141,9 @@ input[type="url"] {
     border-radius: 10px;
     box-sizing: border-box;
     font-size: 15px;
-    background-color: #3c3c3c;
-    color: #ccc;
-   border: 1px solid #3d4f55;
+    background-color: var(--bg-color-input);
+    color: var(--color-input);
+   border: 1px solid var(--border-color-input);
 }
 input[type="number"] {
     width: 100%;
