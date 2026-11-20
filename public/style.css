@@ -9,18 +9,13 @@
     --text-principal-2:#e6f3f5;
 }
 body {
-    font-family:Arial, Helvetica, sans-serif;
-    background-color: var(--bg-color-body);
-    color: var(--text-principal-2);
+   font-family:Arial, Helvetica, sans-serif;
+   background-color: var(--bg-color-body);
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-   /*height: 100vh;*/
-    /*background-image:url("https://images.pexels.com/photos/6985191/pexels-photo-6985191.jpeg");*/
-    background-repeat: no-repeat;
-    background-size:cover;  
 }
 
 header {
@@ -43,7 +38,12 @@ header {
     height: 100px;
     margin-right: 15px;
 }
-
+.texto-principal-1 {
+    color: var(--text-principal-1); 
+}
+.texto-principal-2 {
+    color: var(--text-principal-2);  
+}
 h1 {
     text-align: center;
     margin-bottom: 0px;
@@ -115,10 +115,10 @@ hr{
 }
 
 .pasos span{
-    padding: 3px 10px;
+   padding: 3px 10px;
     border-radius: 50%;
-    background-color: #FF0000;
-    color: #ffffff;
+    background-color: #4ac6d7;
+    color: var(--bg-color-body);
 }
 .form-group {
     margin-bottom: 15px;
@@ -145,17 +145,26 @@ input[type="url"] {
     color: var(--color-input);
    border: 1px solid var(--border-color-input);
 }
+input[type="url"]:focus {
+    outline: none;
+    border-color: #399dab;
+    box-shadow: 0 0 10px rgba(64, 153, 255, 0.5);
+}
 input[type="number"] {
-    width: 100%;
+ width: 100%;
     padding: 15px;
     border-radius: 10px;
     box-sizing: border-box;
     font-size: 15px;
-    background-color: #3c3c3c;
-    color: #ccc;
+    background-color: var(--bg-color-input);
+    color: var(--color-input);
     font-weight: bold;
-   border: 1px solid #3d4f55;
+   border: 1px solid var(--border-color-input);
 }
+input[type="number"]:focus {
+    outline: none;
+    border-color: #399dab;
+    box-shadow: 0 0 10px rgba(64, 153, 255, 0.5);
 #format{
     width: 100%;
     padding: 15px;
